@@ -11,6 +11,12 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <title>sky zen timer</title>
   <style>
+    html {
+      /* 初期背景 */
+      background: linear-gradient(to bottom, #000000, #FFFFFF);
+      height: 100vh;
+      background-attachment: fixed;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -18,11 +24,7 @@
       overflow: hidden;
     }
     body {
-      /* 初期背景 */
-      background: linear-gradient(to bottom, #000000, #FFFFFF);
       position: relative; /* Canvasを絶対配置するために相対位置に設定 */
-      height: 100vh; /* Make body fill the entire screen */
-      background-attachment: fixed; /* Fix background to viewport to ensure full coverage */
     }
     /* フィルムグレイン用のCanvasスタイル */
     #grainCanvas {
