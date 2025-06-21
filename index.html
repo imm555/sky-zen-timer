@@ -11,6 +11,14 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <title>sky zen timer</title>
   <style>
+    /* 最終保険 - 絶対に背景が途切れないように */
+    html {
+      background: linear-gradient(to bottom, #000000, #FFFFFF);
+      background-attachment: fixed;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+    
     html, body {
       margin: 0;
       padding: 0;
@@ -21,7 +29,7 @@
       position: relative; /* Canvasを絶対配置するために相対位置に設定 */
     }
     
-    /* 専用背景要素 - 確実な全画面表示 */
+    /* 専用背景要素 - 絶対確実な全画面表示 */
     #backgroundGradient {
       position: fixed;
       top: 0;
@@ -30,6 +38,9 @@
       height: 100vh;
       background: linear-gradient(to bottom, #000000, #FFFFFF);
       z-index: -2;
+      /* PWA全画面表示のゴールドスタンダード */
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
     }
     
     /* フィルムグレイン用のCanvasスタイル */
@@ -46,7 +57,7 @@
     /* タイマーコンテナ */
     #timerContainer {
       position: absolute;
-      bottom: calc(56px + env(safe-area-inset-bottom));
+      bottom: 56px;
       left: 56px;
       color: white;
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -90,7 +101,7 @@
     /* レスポンシブ対応 - タブレット */
     @media (max-width: 768px) {
       #timerContainer {
-        bottom: calc(40px + env(safe-area-inset-bottom));
+        bottom: 40px;
         left: 40px;
       }
       
@@ -113,7 +124,7 @@
     /* レスポンシブ対応 - スマートフォン */
     @media (max-width: 480px) {
       #timerContainer {
-        bottom: calc(40px + env(safe-area-inset-bottom));
+        bottom: 40px;
         left: 40px;
       }
       
@@ -139,7 +150,7 @@
     /* レスポンシブ対応 - 小型スマートフォン */
     @media (max-width: 360px) {
       #timerContainer {
-        bottom: calc(32px + env(safe-area-inset-bottom));
+        bottom: 32px;
         left: 32px;
       }
       
