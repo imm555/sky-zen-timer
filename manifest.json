@@ -1,6 +1,6 @@
 {
   "name": "Sky Zen Timer",
-  "short_name": "Zen Timer",
+  "short_name": "Sky Zen Timer",
   "description": "美しい背景アニメーション付きの禅タイマー",
   "start_url": "/",
   "display": "fullscreen",
