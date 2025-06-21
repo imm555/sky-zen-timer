@@ -14,42 +14,33 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      height: 100svh; /* Use Small Viewport Height for full screen coverage */
       overflow: hidden;
     }
     body {
-      position: relative;
+      /* 初期背景 */
+      background: linear-gradient(to bottom, #000000, #FFFFFF);
+      position: relative; /* Canvasを絶対配置するために相対位置に設定 */
     }
-    
-    /* 唯一無二の絶対確実な背景レイヤー */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      
-      /* グラデーション（JSからCSS変数を経由して更新） */
-      background: var(--background-gradient, linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%)));
-    }
-    
     /* フィルムグレイン用のCanvasスタイル */
     #grainCanvas {
-      position: fixed;
-      inset: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none; 
-      opacity: 0.05;
-      z-index: 0; /* 背景とUIの間に配置 */
+      opacity: 0.05; /* グレインの透明度を調整 */
     }
 
     /* タイマーコンテナ */
     #timerContainer {
-      position: relative; /* z-indexを有効にするため */
-      z-index: 1; /* 全ての前面に配置 */
-      padding-top: calc(100vh - 250px); /* 位置調整 */
-      padding-left: 56px;
+      position: absolute;
+      bottom: calc(56px + env(safe-area-inset-bottom));
+      left: 56px;
       color: white;
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-      font-weight: 100;
+      font-weight: 100; /* Thin */
     }
 
     /* タイマーのタイトル */
@@ -83,14 +74,14 @@
     }
 
     #timerContainer button:hover {
-      opacity: 0.7;
+      opacity: 0.7; /* ホバー時に色が薄くなるときのやつ */
     }
 
     /* レスポンシブ対応 - タブレット */
     @media (max-width: 768px) {
       #timerContainer {
-        padding-top: calc(100vh - 220px);
-        padding-left: 40px;
+        bottom: calc(40px + env(safe-area-inset-bottom));
+        left: 40px;
       }
       
       #timerTitle {
@@ -112,8 +103,8 @@
     /* レスポンシブ対応 - スマートフォン */
     @media (max-width: 480px) {
       #timerContainer {
-        padding-top: calc(100vh - 220px);
-        padding-left: 40px;
+        bottom: calc(40px + env(safe-area-inset-bottom));
+        left: 40px;
       }
       
       #timerTitle {
@@ -138,8 +129,8 @@
     /* レスポンシブ対応 - 小型スマートフォン */
     @media (max-width: 360px) {
       #timerContainer {
-        padding-top: calc(100vh - 200px);
-        padding-left: 32px;
+        bottom: calc(32px + env(safe-area-inset-bottom));
+        left: 32px;
       }
       
       #timerTitle {
