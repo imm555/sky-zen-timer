@@ -355,4 +355,26 @@ function resetBackgroundAnimation() {
   const blueSky = skyColors.blueSky;
   const gradient = `linear-gradient(to bottom, ${hslToCss(blueSky.top)}, ${hslToCss(blueSky.bottom)})`;
   document.body.style.background = gradient;
-} 
+}
+
+// 全画面表示の制御
+function requestFullscreen() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) {
+    document.documentElement.msRequestFullscreen();
+  }
+}
+
+// ページ読み込み時に全画面表示を試行（ユーザーアクションが必要な場合は無効）
+document.addEventListener('DOMContentLoaded', function() {
+  // モバイルデバイスでのみ全画面表示を試行
+  if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // ユーザーがページをタップした時に全画面表示を試行
+    document.addEventListener('click', function() {
+      requestFullscreen();
+    }, { once: true });
+  }
+}); 
