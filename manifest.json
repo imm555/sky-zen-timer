@@ -3,7 +3,7 @@
   "short_name": "Sky Zen Timer",
   "description": "美しい背景アニメーション付きの禅タイマー",
   "start_url": "/",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#000000",
