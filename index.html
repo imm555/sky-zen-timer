@@ -16,22 +16,20 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-      /* 念のため、ページのデフォルト背景を暗くしておく */
-      background: #000; 
     }
     body {
       position: relative;
     }
     
-    /* 絶対確実な全画面背景レイヤー */
-    #backgroundGradient {
+    /* 唯一無二の絶対確実な背景レイヤー */
+    body::before {
+      content: '';
       position: fixed;
-      /* 画面の四隅に張り付ける */
-      inset: 0; 
-      /* グラデーション */
-      background: linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%));
-      /* 他のすべての要素の背後に配置 */
-      z-index: -1; 
+      inset: 0;
+      z-index: -1;
+      
+      /* グラデーション（JSからCSS変数を経由して更新） */
+      background: var(--background-gradient, linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%)));
     }
     
     /* フィルムグレイン用のCanvasスタイル */
@@ -40,14 +38,15 @@
       inset: 0;
       pointer-events: none; 
       opacity: 0.05;
-      z-index: -1;
+      z-index: 0; /* 背景とUIの間に配置 */
     }
 
     /* タイマーコンテナ */
     #timerContainer {
-      position: absolute;
-      bottom: 56px;
-      left: 56px;
+      position: relative; /* z-indexを有効にするため */
+      z-index: 1; /* 全ての前面に配置 */
+      padding-top: calc(100vh - 250px); /* 位置調整 */
+      padding-left: 56px;
       color: white;
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
       font-weight: 100;
@@ -84,14 +83,14 @@
     }
 
     #timerContainer button:hover {
-      opacity: 0.7; /* ホバー時に色が薄くなるときのやつ */
+      opacity: 0.7;
     }
 
     /* レスポンシブ対応 - タブレット */
     @media (max-width: 768px) {
       #timerContainer {
-        bottom: 40px;
-        left: 40px;
+        padding-top: calc(100vh - 220px);
+        padding-left: 40px;
       }
       
       #timerTitle {
@@ -113,8 +112,8 @@
     /* レスポンシブ対応 - スマートフォン */
     @media (max-width: 480px) {
       #timerContainer {
-        bottom: 40px;
-        left: 40px;
+        padding-top: calc(100vh - 220px);
+        padding-left: 40px;
       }
       
       #timerTitle {
@@ -139,8 +138,8 @@
     /* レスポンシブ対応 - 小型スマートフォン */
     @media (max-width: 360px) {
       #timerContainer {
-        bottom: 32px;
-        left: 32px;
+        padding-top: calc(100vh - 200px);
+        padding-left: 32px;
       }
       
       #timerTitle {
@@ -171,9 +170,6 @@
   </style>
 </head>
 <body>
-  <!-- 絶対確実な全画面背景レイヤー -->
-  <div id="backgroundGradient"></div>
-  
   <!-- フィルムグレイン用のCanvasを追加 -->
   <canvas id="grainCanvas"></canvas>
 

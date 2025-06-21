@@ -104,13 +104,7 @@ let isAnimationPaused = false;
 
 // DOM読み込み完了まで待機
 document.addEventListener('DOMContentLoaded', function() {
-  // 要素の存在確認と初期背景設定
-  const backgroundElement = document.getElementById('backgroundGradient');
-  if (backgroundElement) {
-    const blueSky = skyColors.blueSky;
-    const gradient = `linear-gradient(to bottom, ${hslToCss(blueSky.top)}, ${hslToCss(blueSky.bottom)})`;
-    backgroundElement.style.background = gradient;
-  }
+  // CSSで初期表示が完了しているため、この処理は不要
 });
 
 // フィルムグレインの生成（既存のコード）
@@ -327,10 +321,7 @@ function updateBackground() {
 
   // 背景グラデーションを設定
   const gradient = `linear-gradient(to bottom, ${hslToCss(topColor)}, ${hslToCss(bottomColor)})`;
-  const backgroundElement = document.getElementById('backgroundGradient');
-  if (backgroundElement) {
-    backgroundElement.style.background = gradient;
-  }
+  document.body.style.setProperty('--background-gradient', gradient);
 
   // 次のフレームをリクエスト
   animationRequestId = requestAnimationFrame(updateBackground);
@@ -361,10 +352,7 @@ function resetBackgroundAnimation() {
   // 背景を新しい青空に設定
   const blueSky = skyColors.blueSky;
   const gradient = `linear-gradient(to bottom, ${hslToCss(blueSky.top)}, ${hslToCss(blueSky.bottom)})`;
-  const backgroundElement = document.getElementById('backgroundGradient');
-  if (backgroundElement) {
-    backgroundElement.style.background = gradient;
-  }
+  document.body.style.setProperty('--background-gradient', gradient);
 }
 
 // 全画面表示の制御
