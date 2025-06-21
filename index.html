@@ -36,7 +36,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(to bottom, #000000, #FFFFFF);
+      background: linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%));
       z-index: -2;
       /* PWA全画面表示のゴールドスタンダード */
       min-height: 100vh;
@@ -183,7 +183,7 @@
 </head>
 <body>
   <!-- 専用背景要素 - 確実な全画面表示 -->
-  <div id="backgroundGradient"></div>
+  <div id="backgroundGradient" style="background: linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%));"></div>
   
   <!-- フィルムグレイン用のCanvasを追加 -->
   <canvas id="grainCanvas"></canvas>
