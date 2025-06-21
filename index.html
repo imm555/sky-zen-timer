@@ -11,47 +11,36 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <title>sky zen timer</title>
   <style>
-    /* 最終保険 - 絶対に背景が途切れないように */
-    html {
-      background: linear-gradient(to bottom, #000000, #FFFFFF);
-      background-attachment: fixed;
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-    }
-    
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
+      /* 念のため、ページのデフォルト背景を暗くしておく */
+      background: #000; 
     }
     body {
-      position: relative; /* Canvasを絶対配置するために相対位置に設定 */
+      position: relative;
     }
     
-    /* 専用背景要素 - 絶対確実な全画面表示 */
+    /* 絶対確実な全画面背景レイヤー */
     #backgroundGradient {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      /* 画面の四隅に張り付ける */
+      inset: 0; 
+      /* グラデーション */
       background: linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%));
-      z-index: -2;
-      /* PWA全画面表示のゴールドスタンダード */
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
+      /* 他のすべての要素の背後に配置 */
+      z-index: -1; 
     }
     
     /* フィルムグレイン用のCanvasスタイル */
     #grainCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed;
+      inset: 0;
       pointer-events: none; 
-      opacity: 0.05; /* グレインの透明度を調整 */
+      opacity: 0.05;
+      z-index: -1;
     }
 
     /* タイマーコンテナ */
@@ -61,7 +50,7 @@
       left: 56px;
       color: white;
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-      font-weight: 100; /* Thin */
+      font-weight: 100;
     }
 
     /* タイマーのタイトル */
@@ -182,8 +171,8 @@
   </style>
 </head>
 <body>
-  <!-- 専用背景要素 - 確実な全画面表示 -->
-  <div id="backgroundGradient" style="background: linear-gradient(to bottom, hsl(233, 98%, 21%), hsl(221, 73%, 63%));"></div>
+  <!-- 絶対確実な全画面背景レイヤー -->
+  <div id="backgroundGradient"></div>
   
   <!-- フィルムグレイン用のCanvasを追加 -->
   <canvas id="grainCanvas"></canvas>
