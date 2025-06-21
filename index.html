@@ -21,6 +21,7 @@
       /* 初期背景 */
       background: linear-gradient(to bottom, #000000, #FFFFFF);
       position: relative; /* Canvasを絶対配置するために相対位置に設定 */
+      height: 100vh; /* Make body fill the entire screen */
     }
     /* フィルムグレイン用のCanvasスタイル */
     #grainCanvas {
@@ -36,7 +37,7 @@
     /* タイマーコンテナ */
     #timerContainer {
       position: absolute;
-      bottom: 56px;
+      bottom: calc(56px + env(safe-area-inset-bottom));
       left: 56px;
       color: white;
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -80,7 +81,7 @@
     /* レスポンシブ対応 - タブレット */
     @media (max-width: 768px) {
       #timerContainer {
-        bottom: 40px;
+        bottom: calc(40px + env(safe-area-inset-bottom));
         left: 40px;
       }
       
@@ -103,7 +104,7 @@
     /* レスポンシブ対応 - スマートフォン */
     @media (max-width: 480px) {
       #timerContainer {
-        bottom: 40px;
+        bottom: calc(40px + env(safe-area-inset-bottom));
         left: 40px;
       }
       
@@ -129,7 +130,7 @@
     /* レスポンシブ対応 - 小型スマートフォン */
     @media (max-width: 360px) {
       #timerContainer {
-        bottom: 32px;
+        bottom: calc(32px + env(safe-area-inset-bottom));
         left: 32px;
       }
       
