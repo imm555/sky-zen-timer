@@ -14,14 +14,32 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100svh; /* Use Small Viewport Height for full screen coverage */
+      height: 100%;
       overflow: hidden;
+      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      font-weight: 100; /* Thin */
+    }
+    html {
+        /* A failsafe to prevent any white flashes or bars */
+        background-color: #000;
     }
     body {
-      /* 初期背景 */
-      background: linear-gradient(to bottom, #000000, #FFFFFF);
-      position: relative; /* Canvasを絶対配置するために相対位置に設定 */
+      /* Define CSS variables for the gradient */
+      --gradient-top: hsl(233, 98%, 21%);
+      --gradient-bottom: hsl(221, 73%, 63%);
     }
+
+    #background-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1; /* Place it behind all content */
+      background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+      transition: background 0.5s linear; /* Smooth color transitions */
+    }
+
     /* フィルムグレイン用のCanvasスタイル */
     #grainCanvas {
       position: absolute;
@@ -39,8 +57,6 @@
       bottom: calc(56px + env(safe-area-inset-bottom));
       left: 56px;
       color: white;
-      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-      font-weight: 100; /* Thin */
     }
 
     /* タイマーのタイトル */
@@ -161,6 +177,7 @@
   </style>
 </head>
 <body>
+  <div id="background-gradient"></div>
   <!-- フィルムグレイン用のCanvasを追加 -->
   <canvas id="grainCanvas"></canvas>
 
