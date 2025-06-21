@@ -19,25 +19,10 @@
       font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
       font-weight: 100; /* Thin */
     }
-    html {
-        /* A failsafe to prevent any white flashes or bars */
-        background-color: #000;
-    }
     body {
-      /* Define CSS variables for the gradient */
-      --gradient-top: hsl(233, 98%, 21%);
-      --gradient-bottom: hsl(221, 73%, 63%);
-    }
-
-    #background-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1; /* Place it behind all content */
-      background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
-      transition: background 0.5s linear; /* Smooth color transitions */
+      /* 初期背景 */
+      background: linear-gradient(to bottom, #000000, #FFFFFF);
+      position: relative; /* Canvasを絶対配置するために相対位置に設定 */
     }
 
     /* フィルムグレイン用のCanvasスタイル */
@@ -54,7 +39,7 @@
     /* タイマーコンテナ */
     #timerContainer {
       position: absolute;
-      bottom: calc(56px + env(safe-area-inset-bottom));
+      bottom: 56px;
       left: 56px;
       color: white;
     }
@@ -96,7 +81,7 @@
     /* レスポンシブ対応 - タブレット */
     @media (max-width: 768px) {
       #timerContainer {
-        bottom: calc(40px + env(safe-area-inset-bottom));
+        bottom: 40px;
         left: 40px;
       }
       
@@ -119,7 +104,7 @@
     /* レスポンシブ対応 - スマートフォン */
     @media (max-width: 480px) {
       #timerContainer {
-        bottom: calc(40px + env(safe-area-inset-bottom));
+        bottom: 40px;
         left: 40px;
       }
       
@@ -145,7 +130,7 @@
     /* レスポンシブ対応 - 小型スマートフォン */
     @media (max-width: 360px) {
       #timerContainer {
-        bottom: calc(32px + env(safe-area-inset-bottom));
+        bottom: 32px;
         left: 32px;
       }
       
@@ -177,7 +162,6 @@
   </style>
 </head>
 <body>
-  <div id="background-gradient"></div>
   <!-- フィルムグレイン用のCanvasを追加 -->
   <canvas id="grainCanvas"></canvas>
 

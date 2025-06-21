@@ -105,8 +105,8 @@ let isAnimationPaused = false;
 // 初期状態で背景を「1.青空」に設定
 (function setInitialBackground() {
   const blueSky = skyColors.blueSky;
-  document.body.style.setProperty('--gradient-top', hslToCss(blueSky.top));
-  document.body.style.setProperty('--gradient-bottom', hslToCss(blueSky.bottom));
+  const gradient = `linear-gradient(to bottom, ${hslToCss(blueSky.top)}, ${hslToCss(blueSky.bottom)})`;
+  document.body.style.background = gradient;
 })();
 
 // フィルムグレインの生成（既存のコード）
@@ -322,8 +322,8 @@ function updateBackground() {
   const bottomColor = interpolateHSL(fromSky.bottom, toSky.bottom, localT);
 
   // 背景グラデーションを設定
-  document.body.style.setProperty('--gradient-top', hslToCss(topColor));
-  document.body.style.setProperty('--gradient-bottom', hslToCss(bottomColor));
+  const gradient = `linear-gradient(to bottom, ${hslToCss(topColor)}, ${hslToCss(bottomColor)})`;
+  document.body.style.background = gradient;
 
   // 次のフレームをリクエスト
   animationRequestId = requestAnimationFrame(updateBackground);
@@ -353,8 +353,8 @@ function resetBackgroundAnimation() {
   skyColors.blueSky = getRandomSkyPalette('blueSky');
   // 背景を新しい青空に設定
   const blueSky = skyColors.blueSky;
-  document.body.style.setProperty('--gradient-top', hslToCss(blueSky.top));
-  document.body.style.setProperty('--gradient-bottom', hslToCss(blueSky.bottom));
+  const gradient = `linear-gradient(to bottom, ${hslToCss(blueSky.top)}, ${hslToCss(blueSky.bottom)})`;
+  document.body.style.background = gradient;
 }
 
 // 全画面表示の制御
